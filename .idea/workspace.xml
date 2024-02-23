@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afdba59f-0618-4910-9b9c-8ff533b500a0" name="Changes" comment="erfg">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/build-docker-image.yml" afterDir="false" />
+    <list default="true" id="afdba59f-0618-4910-9b9c-8ff533b500a0" name="Changes" comment="first upload">
       <change afterPath="$PROJECT_DIR$/.terraform.lock.hcl" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/terraform.tfstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app-config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/main.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/outputs.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/packages/backend/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vars.tf" beforeDir="false" afterPath="$PROJECT_DIR$/vars.tf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +73,7 @@
       <updated>1708678164684</updated>
       <workItem from="1708678166825" duration="643000" />
       <workItem from="1708682587738" duration="3452000" />
-      <workItem from="1708686270807" duration="11731000" />
+      <workItem from="1708686270807" duration="11885000" />
     </task>
     <task id="LOCAL-00001" summary="erfg">
       <option name="closed" value="true" />
@@ -95,7 +91,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708686597330</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="first upload">
+      <option name="closed" value="true" />
+      <created>1708705057304</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1708705057304</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +119,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="erfg" />
-    <option name="LAST_COMMIT_MESSAGE" value="erfg" />
+    <MESSAGE value="first upload" />
+    <option name="LAST_COMMIT_MESSAGE" value="first upload" />
   </component>
 </project>
