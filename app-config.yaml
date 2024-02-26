@@ -16,6 +16,7 @@ backend:
       port: ${POSTGRES_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
+      ssl: true
   cors:
     origin: https://${CUSTOM_DOMAIN}
 
