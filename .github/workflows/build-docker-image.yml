@@ -30,8 +30,8 @@ jobs:
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-        username: "backstagecontainer"
-        password: "X4DG/cisOtQf634v2RC6T7LF1U4R7IDM3TB7MRoInX+ACRA/y6Ls"
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
     
     - run: |
         docker image build . --file packages/backend/Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/backstage:${{ github.sha }}

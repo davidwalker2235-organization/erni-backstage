@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afdba59f-0618-4910-9b9c-8ff533b500a0" name="Changes" comment="first upload">
+    <list default="true" id="afdba59f-0618-4910-9b9c-8ff533b500a0" name="Changes" comment="first upload 3">
       <change afterPath="$PROJECT_DIR$/.terraform.lock.hcl" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/terraform.tfstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/main.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/outputs.tf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vars.tf" beforeDir="false" afterPath="$PROJECT_DIR$/vars.tf" afterDir="false" />
@@ -73,7 +74,7 @@
       <updated>1708678164684</updated>
       <workItem from="1708678166825" duration="643000" />
       <workItem from="1708682587738" duration="3452000" />
-      <workItem from="1708686270807" duration="11885000" />
+      <workItem from="1708686270807" duration="12517000" />
     </task>
     <task id="LOCAL-00001" summary="erfg">
       <option name="closed" value="true" />
@@ -99,7 +100,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708705057304</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="first upload 2">
+      <option name="closed" value="true" />
+      <created>1708705293637</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708705293637</updated>
+    </task>
+    <task id="LOCAL-00005" summary="first upload 3">
+      <option name="closed" value="true" />
+      <created>1708705368328</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708705368328</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +137,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="erfg" />
     <MESSAGE value="first upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="first upload" />
+    <MESSAGE value="first upload 2" />
+    <MESSAGE value="first upload 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="first upload 3" />
   </component>
 </project>

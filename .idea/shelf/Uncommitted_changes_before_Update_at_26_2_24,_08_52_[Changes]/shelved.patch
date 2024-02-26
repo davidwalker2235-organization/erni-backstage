@@ -1,0 +1,597 @@
+Index: outputs.tf
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>output \"backstage_service_principal_object_id\" {\n  value = azuread_service_principal.service_principal.object_id\n}\n\noutput \"backstage_service_principal_id\" {\n  value = azurerm_app_service.backstage_app.identity[0].principal_id\n}\n\noutput \"backstage_app_outbound_ips\" {\n  value = azurerm_app_service.backstage_app.outbound_ip_addresses\n}\n\noutput \"backstage_rg_name\" {\n  value = azurerm_resource_group.backstage_rg.name\n}\n\noutput \"backstage_postgresql_name\" {\n  value = azurerm_postgresql_server.backstage_postgresql.name\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/outputs.tf b/outputs.tf
+--- a/outputs.tf	(revision 8e2bc728f0009adabbc204d9714acee6229937f6)
++++ b/outputs.tf	(date 1708933585151)
+@@ -1,6 +1,6 @@
+-output "backstage_service_principal_object_id" {
+-  value = azuread_service_principal.service_principal.object_id
+-}
++#output "backstage_service_principal_object_id" {
++#  value = azuread_service_principal.service_principal.object_id
++#}
+ 
+ output "backstage_service_principal_id" {
+   value = azurerm_app_service.backstage_app.identity[0].principal_id
+Index: vars.tf
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Environment, for example \"prod\" or \"test\"\nvariable \"environment\" {\n    type = string\n    default = \"prod\"\n}\n\n# The name of your new service, for example \"backstage\"\nvariable \"service_name\" {\n    type = string\n    default = \"ernibackstage\"\n}\n\n# Change this to match whatever suits you best\nvariable \"location\" {\n    type = string\n    default = \"West Europe\"\n}\n\n# An admin password for your database\nvariable \"db_admin_password\" {\n    type = string\n    default = \"Dacarma@9211\"\n}\n\nvariable \"db_admin_username\" {\n    type = string\n    default = \"backstage\"\n}\n\nvariable \"github_organization\" {\n    type = string\n    default = \"davidwalker2235-organization\"\n}\n\nvariable \"github_backstage_appid\" {\n    type = string\n    default = \"828233\"\n}\n\nvariable \"github_backstage_clientId\" {\n    type = string\n    default = \"Iv1.070a80f1762cab18\"\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vars.tf b/vars.tf
+--- a/vars.tf	(revision 8e2bc728f0009adabbc204d9714acee6229937f6)
++++ b/vars.tf	(date 1708933585156)
+@@ -27,11 +27,21 @@
+     default = "backstage"
+ }
+ 
++variable "github_token" {
++    type = string
++    default = "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"
++}
++
+ variable "github_organization" {
+     type = string
+     default = "davidwalker2235-organization"
+ }
+ 
++variable "github_repository_name" {
++    type = string
++    default = "erni-backstage"
++}
++
+ variable "github_backstage_appid" {
+     type = string
+     default = "828233"
+@@ -41,3 +51,88 @@
+     type = string
+     default = "Iv1.070a80f1762cab18"
+ }
++
++variable "github_backstage_clientSecret" {
++    type = string
++    default = "Ffb6c39a026e53dba549affdb09170aa2ab89809"
++}
++
++variable "azure_subscription_id" {
++    type = string
++    default = "70e356bf-9061-41cb-8a82-d3fe0361603b"
++}
++
++variable "azure_tenant_id" {
++    type = string
++    default = "eb25818e-5bd5-49bf-99de-53e3e7b42630"
++}
++
++variable "azure_client_id" {
++    type = string
++    default = "f2bece22-8055-4579-af8a-1220755d2cc3"
++}
++
++variable "azure_client_secret" {
++    type = string
++    default = "FGa8Q~FgW1XGAzuQ-o.kVKAB1BQbsiyrh_suYbvC"
++}
++
++variable "container_registry_login_server" {
++    type = string
++    default = "backstagecontainer.azurecr.io"
++}
++
++variable "container_registry_username" {
++    type = string
++    default = "backstagecontainer"
++}
++
++variable "container_registry_password" {
++    type = string
++    default = "X4DG/cisOtQf634v2RC6T7LF1U4R7IDM3TB7MRoInX+ACRA/y6Ls"
++}
++
++variable "github_app_id" {
++    type = string
++    default = 828233
++}
++
++variable "github_app_client_id" {
++    type = string
++    default = "Iv1.070a80f1762cab18"
++}
++
++variable "github_app_client_secret" {
++    type = string
++    default = "Ffb6c39a026e53dba549affdb09170aa2ab89809"
++}
++
++variable "postgres_host" {
++    type = string
++    default = "ernibackstagepsql.postgres.database.azure.com"
++}
++
++variable "postgres_port" {
++    type = string
++    default = 5432
++}
++
++variable "postgres_user" {
++    type = string
++    default = "postgres@ernibackstageprodpsql"
++}
++
++variable "postgres_password" {
++    type = string
++    default = "Dacarma@9211"
++}
++
++variable "docker_registry_username" {
++    type = string
++    default = "backstagecontainer"
++}
++
++variable "docker_registry_password" {
++    type = string
++    default = "X4DG/cisOtQf634v2RC6T7LF1U4R7IDM3TB7MRoInX+ACRA/y6Ls"
++}
+\ No newline at end of file
+Index: main.tf
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>terraform {\n  required_providers {\n    azurerm = {\n      source = \"hashicorp/azurerm\"\n      version = \"2.89.0\"\n    }\n    azuread = {\n      source = \"hashicorp/azuread\"\n      version = \"2.12.0\"\n    }\n    github = {\n      source = \"integrations/github\"\n      version = \"4.19.0\"\n    }\n  }\n}\n\nprovider \"azurerm\" {\n  features {}\n}\n\nprovider \"azuread\" {\n}\n\nprovider \"github\" {\n  owner = \"davidwalker2235-organization\" # Insert your own org name here\n  #app_auth { }\n}\n\n# I use \"abcd\" as my \"company name\" here as an example, substitute for anything you want.\n# Combining this name_prefix with resource type in names later on enforces good naming practices for the Azure resources.\n\nlocals {\n  custom_domain = \"${var.service_name}-${var.environment}.azurewebsites.net\"\n  name_prefix = \"${var.environment}${var.service_name}\"\n  app_service_ip_address = distinct(split(\",\", azurerm_app_service.backstage_app.outbound_ip_addresses))\n}\n\ndata \"azurerm_client_config\" \"current\" { }\n\nresource \"azurerm_resource_group\" \"backstage_rg\" {\n  name     = \"${local.name_prefix}rg\"\n  location = var.location\n}\n\nresource \"azuread_application\" \"backstage_application\" {\n  display_name = \"${local.name_prefix}service\"\n\n  web {\n    redirect_uris = [\n      \"https://${local.custom_domain}/api/auth/microsoft/handler/frame\"\n    ]\n  }\n}\n\nresource \"azuread_service_principal\" \"service_principal\" {\n  application_id = azuread_application.backstage_application.application_id\n}\n\nresource \"azuread_application_password\" \"backstage_app_password\" {\n  application_object_id = azuread_application.backstage_application.object_id\n  end_date              = \"2099-01-01T01:02:03Z\"\n}\n\nresource \"azurerm_storage_account\" \"techdocs_storage\" {\n  name                     = \"${local.name_prefix}storage\"\n  resource_group_name      = azurerm_resource_group.backstage_rg.name\n  location                 = azurerm_resource_group.backstage_rg.location\n  allow_blob_public_access = false\n  account_tier             = \"Standard\"\n  account_replication_type = \"GRS\"\n}\n\nresource \"azurerm_storage_container\" \"techdocs_storage_container\" {\n  name                  = \"${local.name_prefix}techdocs\"\n  storage_account_name  = azurerm_storage_account.techdocs_storage.name\n  container_access_type = \"private\"\n}\n\nresource \"azurerm_role_assignment\" \"service_principal_storage_access\" {\n  scope                = azurerm_storage_account.techdocs_storage.id\n  role_definition_name = \"Storage Blob Data Owner\"\n  principal_id         = azuread_service_principal.service_principal.object_id\n}\n\nresource \"azurerm_application_insights\" \"app_insights\" {\n  name                = \"${local.name_prefix}appi\"\n  location            = azurerm_resource_group.backstage_rg.location\n  resource_group_name = azurerm_resource_group.backstage_rg.name\n  application_type    = \"other\"\n}\n\nresource \"azurerm_app_service_plan\" \"backstage_app_plan\" {\n  name                = \"${local.name_prefix}plan\"\n  location            = azurerm_resource_group.backstage_rg.location\n  resource_group_name = azurerm_resource_group.backstage_rg.name\n  kind                = \"Linux\"\n  reserved            = true\n\n  sku {\n    tier = \"Basic\"\n    size = \"B1\"\n  }\n}\n\nresource \"azurerm_postgresql_server\" \"backstage_postgresql\" {\n  name                = \"${local.name_prefix}psql\"\n  location            = azurerm_resource_group.backstage_rg.location\n  resource_group_name = azurerm_resource_group.backstage_rg.name\n\n  sku_name = \"B_Gen5_1\"\n\n  storage_mb                   = 5120\n  backup_retention_days        = 7\n  geo_redundant_backup_enabled = false\n  auto_grow_enabled            = false\n\n  administrator_login          = var.db_admin_username\n  administrator_login_password = var.db_admin_password\n  version                      = \"11\"\n  ssl_enforcement_enabled      = true\n}\n\nresource \"azurerm_postgresql_database\" \"backstage_postgresql_database\" {\n  name                = \"docs\"\n  resource_group_name = azurerm_resource_group.backstage_rg.name\n  server_name         = azurerm_postgresql_server.backstage_postgresql.name\n  charset             = \"UTF8\"\n  collation           = \"en-US\"\n}\n\nresource \"azurerm_app_service\" \"backstage_app\" {\n  name                = \"${local.name_prefix}app\"\n  location            = azurerm_resource_group.backstage_rg.location\n  resource_group_name = azurerm_resource_group.backstage_rg.name\n  app_service_plan_id = azurerm_app_service_plan.backstage_app_plan.id\n\n  identity {\n    type = \"SystemAssigned\"\n  }\n\n  app_settings = {\n    \"AZURE_CLIENT_ID\" = azuread_application.backstage_application.application_id\n    \"AZURE_CLIENT_SECRET\" = azuread_application_password.backstage_app_password.value\n    \"AZURE_TENANT_ID\" = data.azurerm_client_config.current.tenant_id\n    \"POSTGRES_HOST\" = azurerm_postgresql_server.backstage_postgresql.fqdn\n    \"POSTGRES_PORT\" = 5432\n    \"POSTGRES_USER\" = \"${var.db_admin_username}@${azurerm_postgresql_server.backstage_postgresql.fqdn}\"\n    \"POSTGRES_PASSWORD\" = var.db_admin_password\n    \"APPINSIGHTS_INSTRUMENTATIONKEY\" = azurerm_application_insights.app_insights.instrumentation_key\n    \"DOCKER_REGISTRY_SERVER_USERNAME\" = azuread_application.backstage_application.application_id\n    \"DOCKER_REGISTRY_SERVER_PASSWORD\" = azuread_application_password.backstage_app_password.value\n    \"CUSTOM_DOMAIN\" = local.custom_domain\n    \"TECHDOCS_CONTAINER_NAME\" = azurerm_storage_container.techdocs_storage_container.name\n    \"TECHDOCS_STORAGE_ACCOUNT\" = azurerm_storage_account.techdocs_storage.name\n  }\n}\n\nresource \"azurerm_role_assignment\" \"app_service_contributor_role_assignment\" {\n  scope                = azurerm_app_service.backstage_app.id\n  role_definition_name = \"Contributor\"\n  principal_id         = azuread_service_principal.service_principal.object_id\n}\n\nresource \"azuread_application\" \"container_registry_contributor\" {\n  display_name = \"${local.name_prefix}crcservice\"\n}\n\nresource \"azuread_service_principal\" \"cr_contributor_service_principal\" {\n  application_id = azuread_application.container_registry_contributor.application_id\n  tags           = [\"container registry\", \"docker\", \"github\"]\n}\n\nresource \"azuread_application_password\" \"cr_contributor_service_principal_password\" {\n  application_object_id = azuread_application.container_registry_contributor.object_id\n  end_date              = \"2099-02-01T01:02:03Z\"\n}\n\nresource \"azurerm_container_registry\" \"acr\" {\n  name                = \"${local.name_prefix}acr\"\n  resource_group_name = azurerm_resource_group.backstage_rg.name\n  location            = azurerm_resource_group.backstage_rg.location\n  sku                 = \"Basic\"\n  admin_enabled       = false\n}\n\nresource \"azurerm_role_assignment\" \"container_registry_contributor_role_assignment\" {\n  scope                = azurerm_container_registry.acr.id\n  role_definition_name = \"Contributor\"\n  principal_id         = azuread_service_principal.cr_contributor_service_principal.object_id\n}\n\nresource \"azurerm_role_assignment\" \"backstage_app_service_principal_acr_role_assignment\" {\n  scope                = azurerm_container_registry.acr.id\n  role_definition_name = \"Reader\"\n  principal_id         = azuread_service_principal.service_principal.id\n}\n\nresource \"azurerm_role_assignment\" \"backstage_app_service_principal_acr_acrpull_role_assignment\" {\n  scope                = azurerm_container_registry.acr.id\n  role_definition_name = \"AcrPull\"\n  principal_id         = azuread_service_principal.service_principal.id\n}\n\nresource \"azurerm_role_assignment\" \"backstage_service_principal_acr_acrpull_role_assignment\" {\n  scope                = azurerm_container_registry.acr.id\n  role_definition_name = \"AcrPull\"\n  principal_id         = azuread_service_principal.service_principal.id\n}\n\nresource \"github_actions_organization_secret\" \"registry_login_server\" {\n  secret_name     = \"REGISTRY_LOGIN_SERVER\"\n  visibility      = \"private\"\n  plaintext_value = azurerm_container_registry.acr.login_server\n}\n\nresource \"github_actions_organization_secret\" \"registry_username\" {\n  secret_name     = \"REGISTRY_USERNAME\"\n  visibility      = \"private\"\n  plaintext_value = azuread_service_principal.cr_contributor_service_principal.application_id\n}\n\nresource \"github_actions_organization_secret\" \"registry_password\" {\n  secret_name     = \"REGISTRY_PASSWORD\"\n  visibility      = \"private\"\n  plaintext_value = azuread_application_password.cr_contributor_service_principal_password.value\n}\n\nresource \"github_actions_secret\" \"app_name\" {\n  repository       = \"your-repository-name\"\n  secret_name      = \"APP_NAME\"\n  plaintext_value  = azurerm_app_service.backstage_app.name\n}\n\nresource \"github_actions_organization_secret\" \"github_techdocs_container_name\" {\n  visibility       = \"private\"\n  secret_name      = \"TECHDOCS_CONTAINER_NAME\"\n  plaintext_value  = azurerm_storage_container.techdocs_storage_container.name\n}\n\nresource \"github_actions_organization_secret\" \"github_techdocs_storage_account_name\" {\n  visibility       = \"private\"\n  secret_name      = \"TECHDOCS_STORAGE_ACCOUNT\"\n  plaintext_value  = azurerm_storage_account.techdocs_storage.name\n}\n\nresource \"github_actions_organization_secret\" \"github_azure_subscription_id\" {\n  visibility       = \"private\"\n  secret_name      = \"AZURE_SUBSCRIPTION_ID\"\n  plaintext_value  = data.azurerm_client_config.current.subscription_id\n}\n\nresource \"github_actions_organization_secret\" \"github_azure_tenant_id\" {\n  visibility       = \"private\"\n  secret_name      = \"AZURE_TENANT_ID\"\n  plaintext_value  = data.azurerm_client_config.current.tenant_id\n}\n\nresource \"github_actions_organization_secret\" \"github_azure_client_id\" {\n  visibility       = \"private\"\n  secret_name      = \"AZURE_CLIENT_ID\"\n  plaintext_value  = azuread_service_principal.service_principal.application_id\n}\n\nresource \"github_actions_organization_secret\" \"github_azure_client_secret\" {\n  visibility       = \"private\"\n  secret_name      = \"AZURE_CLIENT_SECRET\"\n  plaintext_value  = azuread_application_password.backstage_app_password.value\n}\n\nresource \"github_actions_secret\" \"azure_credentials\" {\n  repository       = \"your-repository-name\"\n  secret_name      = \"AZURE_CREDENTIALS\"\n  plaintext_value  = jsonencode({\n    \"clientId\" = azuread_service_principal.service_principal.application_id\n    \"clientSecret\" = azuread_application_password.backstage_app_password.value\n    \"subscriptionId\" = data.azurerm_client_config.current.subscription_id\n    \"tenantId\" = data.azurerm_client_config.current.tenant_id\n  })\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main.tf b/main.tf
+--- a/main.tf	(revision 8e2bc728f0009adabbc204d9714acee6229937f6)
++++ b/main.tf	(date 1708933585162)
+@@ -23,8 +23,8 @@
+ }
+ 
+ provider "github" {
+-  owner = "davidwalker2235-organization" # Insert your own org name here
+-  #app_auth { }
++  owner = var.github_organization
++  token = var.github_token
+ }
+ 
+ # I use "abcd" as my "company name" here as an example, substitute for anything you want.
+@@ -33,7 +33,6 @@
+ locals {
+   custom_domain = "${var.service_name}-${var.environment}.azurewebsites.net"
+   name_prefix = "${var.environment}${var.service_name}"
+-  app_service_ip_address = distinct(split(",", azurerm_app_service.backstage_app.outbound_ip_addresses))
+ }
+ 
+ data "azurerm_client_config" "current" { }
+@@ -43,24 +42,24 @@
+   location = var.location
+ }
+ 
+-resource "azuread_application" "backstage_application" {
+-  display_name = "${local.name_prefix}service"
+-
+-  web {
+-    redirect_uris = [
+-      "https://${local.custom_domain}/api/auth/microsoft/handler/frame"
+-    ]
+-  }
+-}
++#resource "azuread_application" "backstage_application" {
++#  display_name = "${local.name_prefix}service"
++#
++#  web {
++#    redirect_uris = [
++#      "https://${local.custom_domain}/api/auth/microsoft/handler/frame"
++#    ]
++#  }
++#}
+ 
+-resource "azuread_service_principal" "service_principal" {
+-  application_id = azuread_application.backstage_application.application_id
+-}
+-
+-resource "azuread_application_password" "backstage_app_password" {
+-  application_object_id = azuread_application.backstage_application.object_id
+-  end_date              = "2099-01-01T01:02:03Z"
+-}
++#resource "azuread_service_principal" "service_principal" {
++#  application_id = azuread_application.backstage_application.application_id
++#}
++#
++#resource "azuread_application_password" "backstage_app_password" {
++#  application_object_id = azuread_application.backstage_application.object_id
++#  end_date              = "2099-01-01T01:02:03Z"
++#}
+ 
+ resource "azurerm_storage_account" "techdocs_storage" {
+   name                     = "${local.name_prefix}storage"
+@@ -77,11 +76,11 @@
+   container_access_type = "private"
+ }
+ 
+-resource "azurerm_role_assignment" "service_principal_storage_access" {
+-  scope                = azurerm_storage_account.techdocs_storage.id
+-  role_definition_name = "Storage Blob Data Owner"
+-  principal_id         = azuread_service_principal.service_principal.object_id
+-}
++#resource "azurerm_role_assignment" "service_principal_storage_access" {
++#  scope                = azurerm_storage_account.techdocs_storage.id
++#  role_definition_name = "Storage Blob Data Owner"
++#  principal_id         = azuread_service_principal.service_principal.object_id
++#}
+ 
+ resource "azurerm_application_insights" "app_insights" {
+   name                = "${local.name_prefix}appi"
+@@ -140,41 +139,41 @@
+   }
+ 
+   app_settings = {
+-    "AZURE_CLIENT_ID" = azuread_application.backstage_application.application_id
+-    "AZURE_CLIENT_SECRET" = azuread_application_password.backstage_app_password.value
+-    "AZURE_TENANT_ID" = data.azurerm_client_config.current.tenant_id
+-    "POSTGRES_HOST" = azurerm_postgresql_server.backstage_postgresql.fqdn
+-    "POSTGRES_PORT" = 5432
++    "AZURE_CLIENT_ID" = var.azure_client_id
++    "AZURE_CLIENT_SECRET" = var.azure_client_secret
++    "AZURE_TENANT_ID" = var.azure_tenant_id
++    "POSTGRES_HOST" = var.postgres_host
++    "POSTGRES_PORT" = var.postgres_port
+     "POSTGRES_USER" = "${var.db_admin_username}@${azurerm_postgresql_server.backstage_postgresql.fqdn}"
+     "POSTGRES_PASSWORD" = var.db_admin_password
+     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.app_insights.instrumentation_key
+-    "DOCKER_REGISTRY_SERVER_USERNAME" = azuread_application.backstage_application.application_id
+-    "DOCKER_REGISTRY_SERVER_PASSWORD" = azuread_application_password.backstage_app_password.value
++    "DOCKER_REGISTRY_SERVER_USERNAME" = var.docker_registry_username
++    "DOCKER_REGISTRY_SERVER_PASSWORD" = var.docker_registry_password
+     "CUSTOM_DOMAIN" = local.custom_domain
+     "TECHDOCS_CONTAINER_NAME" = azurerm_storage_container.techdocs_storage_container.name
+     "TECHDOCS_STORAGE_ACCOUNT" = azurerm_storage_account.techdocs_storage.name
+   }
+ }
+ 
+-resource "azurerm_role_assignment" "app_service_contributor_role_assignment" {
+-  scope                = azurerm_app_service.backstage_app.id
+-  role_definition_name = "Contributor"
+-  principal_id         = azuread_service_principal.service_principal.object_id
+-}
+-
+-resource "azuread_application" "container_registry_contributor" {
+-  display_name = "${local.name_prefix}crcservice"
+-}
++#resource "azurerm_role_assignment" "app_service_contributor_role_assignment" {
++#  scope                = azurerm_app_service.backstage_app.id
++#  role_definition_name = "Contributor"
++#  principal_id         = azuread_service_principal.service_principal.object_id
++#}
+ 
+-resource "azuread_service_principal" "cr_contributor_service_principal" {
+-  application_id = azuread_application.container_registry_contributor.application_id
+-  tags           = ["container registry", "docker", "github"]
+-}
+-
+-resource "azuread_application_password" "cr_contributor_service_principal_password" {
+-  application_object_id = azuread_application.container_registry_contributor.object_id
+-  end_date              = "2099-02-01T01:02:03Z"
+-}
++#resource "azuread_application" "container_registry_contributor" {
++#  display_name = "${local.name_prefix}crcservice"
++#}
++#
++#resource "azuread_service_principal" "cr_contributor_service_principal" {
++#  application_id = azuread_application.container_registry_contributor.application_id
++#  tags           = ["container registry", "docker", "github"]
++#}
++#
++#resource "azuread_application_password" "cr_contributor_service_principal_password" {
++#  application_object_id = azuread_application.container_registry_contributor.object_id
++#  end_date              = "2099-02-01T01:02:03Z"
++#}
+ 
+ resource "azurerm_container_registry" "acr" {
+   name                = "${local.name_prefix}acr"
+@@ -184,97 +183,115 @@
+   admin_enabled       = false
+ }
+ 
+-resource "azurerm_role_assignment" "container_registry_contributor_role_assignment" {
+-  scope                = azurerm_container_registry.acr.id
+-  role_definition_name = "Contributor"
+-  principal_id         = azuread_service_principal.cr_contributor_service_principal.object_id
+-}
+-
+-resource "azurerm_role_assignment" "backstage_app_service_principal_acr_role_assignment" {
+-  scope                = azurerm_container_registry.acr.id
+-  role_definition_name = "Reader"
+-  principal_id         = azuread_service_principal.service_principal.id
+-}
+-
+-resource "azurerm_role_assignment" "backstage_app_service_principal_acr_acrpull_role_assignment" {
+-  scope                = azurerm_container_registry.acr.id
+-  role_definition_name = "AcrPull"
+-  principal_id         = azuread_service_principal.service_principal.id
+-}
+-
+-resource "azurerm_role_assignment" "backstage_service_principal_acr_acrpull_role_assignment" {
+-  scope                = azurerm_container_registry.acr.id
+-  role_definition_name = "AcrPull"
+-  principal_id         = azuread_service_principal.service_principal.id
+-}
++#resource "azurerm_role_assignment" "container_registry_contributor_role_assignment" {
++#  scope                = azurerm_container_registry.acr.id
++#  role_definition_name = "Contributor"
++#  principal_id         = azuread_service_principal.cr_contributor_service_principal.object_id
++#}
++#
++#resource "azurerm_role_assignment" "backstage_app_service_principal_acr_role_assignment" {
++#  scope                = azurerm_container_registry.acr.id
++#  role_definition_name = "Reader"
++#  principal_id         = azuread_service_principal.service_principal.id
++#}
++#
++#resource "azurerm_role_assignment" "backstage_app_service_principal_acr_acrpull_role_assignment" {
++#  scope                = azurerm_container_registry.acr.id
++#  role_definition_name = "AcrPull"
++#  principal_id         = azuread_service_principal.service_principal.id
++#}
++#
++#resource "azurerm_role_assignment" "backstage_service_principal_acr_acrpull_role_assignment" {
++#  scope                = azurerm_container_registry.acr.id
++#  role_definition_name = "AcrPull"
++#  principal_id         = azuread_service_principal.service_principal.id
++#}
+ 
+ resource "github_actions_organization_secret" "registry_login_server" {
+   secret_name     = "REGISTRY_LOGIN_SERVER"
+-  visibility      = "private"
+-  plaintext_value = azurerm_container_registry.acr.login_server
++  visibility      = "all"
++  plaintext_value = var.container_registry_login_server
+ }
+ 
+ resource "github_actions_organization_secret" "registry_username" {
+   secret_name     = "REGISTRY_USERNAME"
+-  visibility      = "private"
+-  plaintext_value = azuread_service_principal.cr_contributor_service_principal.application_id
++  visibility      = "all"
++  plaintext_value = var.container_registry_username
+ }
+ 
+ resource "github_actions_organization_secret" "registry_password" {
+   secret_name     = "REGISTRY_PASSWORD"
+-  visibility      = "private"
+-  plaintext_value = azuread_application_password.cr_contributor_service_principal_password.value
++  visibility      = "all"
++  plaintext_value = var.container_registry_password
+ }
+ 
+ resource "github_actions_secret" "app_name" {
+-  repository       = "your-repository-name"
++  repository       = var.github_repository_name
+   secret_name      = "APP_NAME"
+   plaintext_value  = azurerm_app_service.backstage_app.name
+ }
+ 
+ resource "github_actions_organization_secret" "github_techdocs_container_name" {
+-  visibility       = "private"
++  visibility       = "all"
+   secret_name      = "TECHDOCS_CONTAINER_NAME"
+   plaintext_value  = azurerm_storage_container.techdocs_storage_container.name
+ }
+ 
+ resource "github_actions_organization_secret" "github_techdocs_storage_account_name" {
+-  visibility       = "private"
++  visibility       = "all"
+   secret_name      = "TECHDOCS_STORAGE_ACCOUNT"
+   plaintext_value  = azurerm_storage_account.techdocs_storage.name
+ }
+ 
+ resource "github_actions_organization_secret" "github_azure_subscription_id" {
+-  visibility       = "private"
++  visibility       = "all"
+   secret_name      = "AZURE_SUBSCRIPTION_ID"
+-  plaintext_value  = data.azurerm_client_config.current.subscription_id
++  plaintext_value  = var.azure_subscription_id
+ }
+ 
+ resource "github_actions_organization_secret" "github_azure_tenant_id" {
+-  visibility       = "private"
++  visibility       = "all"
+   secret_name      = "AZURE_TENANT_ID"
+-  plaintext_value  = data.azurerm_client_config.current.tenant_id
++  plaintext_value  = var.azure_tenant_id
+ }
+ 
+ resource "github_actions_organization_secret" "github_azure_client_id" {
+-  visibility       = "private"
++  visibility       = "all"
+   secret_name      = "AZURE_CLIENT_ID"
+-  plaintext_value  = azuread_service_principal.service_principal.application_id
++  plaintext_value  = var.azure_client_id
+ }
+ 
+ resource "github_actions_organization_secret" "github_azure_client_secret" {
+-  visibility       = "private"
++  visibility       = "all"
+   secret_name      = "AZURE_CLIENT_SECRET"
+-  plaintext_value  = azuread_application_password.backstage_app_password.value
++  plaintext_value  = var.azure_client_secret
++}
++
++resource "github_actions_organization_secret" "github_app_id" {
++  visibility       = "all"
++  secret_name      = "APP_ID"
++  plaintext_value  = var.github_app_id
++}
++
++resource "github_actions_organization_secret" "github_app_client_id" {
++  visibility       = "all"
++  secret_name      = "APP_CLIENT_ID"
++  plaintext_value  = var.github_app_client_id
++}
++
++resource "github_actions_organization_secret" "github_app_client_secret" {
++  visibility       = "all"
++  secret_name      = "APP_CLIENT_SECRET"
++  plaintext_value  = var.github_app_client_secret
+ }
+ 
+ resource "github_actions_secret" "azure_credentials" {
+-  repository       = "your-repository-name"
++  repository       = var.github_repository_name
+   secret_name      = "AZURE_CREDENTIALS"
+   plaintext_value  = jsonencode({
+-    "clientId" = azuread_service_principal.service_principal.application_id
+-    "clientSecret" = azuread_application_password.backstage_app_password.value
+-    "subscriptionId" = data.azurerm_client_config.current.subscription_id
+-    "tenantId" = data.azurerm_client_config.current.tenant_id
++    "clientId" = var.azure_client_id
++    "clientSecret" = var.azure_client_secret
++    "subscriptionId" = var.azure_subscription_id
++    "tenantId" = var.azure_tenant_id
+   })
+ }
+\ No newline at end of file
+Index: .terraform.lock.hcl
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.terraform.lock.hcl b/.terraform.lock.hcl
+new file mode 100644
+--- /dev/null	(date 1708933585166)
++++ b/.terraform.lock.hcl	(date 1708933585166)
+@@ -0,0 +1,61 @@
++# This file is maintained automatically by "terraform init".
++# Manual edits may be lost in future updates.
++
++provider "registry.terraform.io/hashicorp/azuread" {
++  version     = "2.12.0"
++  constraints = "2.12.0"
++  hashes = [
++    "h1:DcMcMcQ0DySwR4gi0MCA7/g2zkYkzPNq8A6Diy5zgJI=",
++    "zh:04246818213a8a3de15340fc71c326538d391c7c7c5273dc3897fbeedf187c8e",
++    "zh:0c6bb23ca68f6cfc88980feb7fa2208b9b00be80435f6e4df8fc6f0a2b0693e2",
++    "zh:32e172b4c785bc724470bdcdb2f407bfe2935cbbe91552e31e018c647643e97a",
++    "zh:40ef2493096102384a5d3749a03996be9a6d3b3ab6d782db7e731c7ee7676bfe",
++    "zh:5ca3845a0b840104de8487232b6f2d3ea29c8a2cd962a3741eb85f200f8ac65f",
++    "zh:88b6c8154595abf32c062c93d3c8d4e71f487f739ed613acd1dd02ca90333270",
++    "zh:89d8850b3211941740d5f90ae9b0a233d31432044652840d9df2e343bfb5fbde",
++    "zh:b312777f193676865ba748d225f57320a06386e103acd5bca514ed5ff00b4b44",
++    "zh:b3fa954a50ed0352f3330e93bc62d2357e0965470ee36972fdb736f0f8205f5f",
++    "zh:d1ceb73f24209d64c47c6986440afcc24dfb9b7ea47e049f9fa06b577fd060fa",
++    "zh:f548546519d2f0592910988c42f4abe53069b49c29ea5d1965f90b4aaaa87609",
++  ]
++}
++
++provider "registry.terraform.io/hashicorp/azurerm" {
++  version     = "2.89.0"
++  constraints = "2.89.0"
++  hashes = [
++    "h1:NAm/WZGVmq6RNitLgvRbj6MIFlloaO1f0cltknrL6FI=",
++    "zh:126414548bd2788d4ac522473aaff3a067db4ee7188ad7e72b9ca22c11eee7a3",
++    "zh:348b0cde6f26e4c93bd490003f362b32b5844dd2cc7cc04e45b5cab4934c1228",
++    "zh:3b99d53c8695018ad073144189592e0f22fe3ea4d4f48501aeaacae32f4a0c5c",
++    "zh:64849db291a522511ea60e27993034e779e5337861f9936edda542bfbb99293e",
++    "zh:6e0b54ac5253ce1af26f00a811e608203b946b1f1b06c22127d4c7604dc6fde7",
++    "zh:70271cd3969c1cc0daab87c8a20c452cd47ede35828c9d9a5c482e30f8f83110",
++    "zh:835dba150ceec0b74c590b727e3df82eb5687227b0b817621998eda7c2ace526",
++    "zh:a84d73b1208254f86e34b813d2ee3270a61079af4167d9c51f4825b639427547",
++    "zh:bcccfa28cacaf402fc3026b203411be576de2c97c5e4af50a17c61522e6fe4de",
++    "zh:c34fb19904b0d1e930209b8bcee1c47fc7530949db70376a775d815be7c81673",
++    "zh:c95437a9519c41895813d0481c34365d782472665866794fd986cc53a5fe0b32",
++  ]
++}
++
++provider "registry.terraform.io/integrations/github" {
++  version     = "4.19.0"
++  constraints = "4.19.0"
++  hashes = [
++    "h1:0V1vqwhjYGXxSIqs6SRpPo/XMQ0aVvMsfKbNG4qSS4Y=",
++    "zh:035175644cbc07d4ad6574bfda2b567b4636cf6496e502323a4474a512233bd2",
++    "zh:25277521a1087fb189571b338ff83484852f1e2e9c01a4778cbe19133486436f",
++    "zh:29dfed71dcb878f398ae8ed86695d306b16be1d1fbeee8266a6134fc62b63f3b",
++    "zh:450db6877c1c1930c6cf9d9e4f64f13e667b6b43d01ee032fe91fd2cbcc66ba9",
++    "zh:65b5a73f6a48f39e11502f4844a24f914dff61e19408ab2da0eaa16893da274b",
++    "zh:6a05578deacb13af930a637e03caceec2294ea9156f04f3c101b834a2606b311",
++    "zh:88e8a23ec41f3cc97d23097c1997985b922399bce18289e43e8f666092791835",
++    "zh:9cce85eb9ce6bf23da6cddf9c987fd38dde460fb76df1ac53c0fcc4a635a99ca",
++    "zh:a2f08bb46606c790e772b960bd1bf42bf94d8b3f2afa670dca9fb9772ba57bbc",
++    "zh:a9babe59f910239b78f1233ff4aefc63eb3cfca01bccf25c7971eaa542fbb998",
++    "zh:bb2fb027af1b7dd543b73db342b625921df02ca353ad53b9f90bb60448387501",
++    "zh:c3eb921462d8ed508712977de2c1191e2424d5983f426c326e60dfd4bad60363",
++    "zh:de200e22f3109049ebb319284fe78dc2bc8cf016c4e79f0b071712460ad35987",
++  ]
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"afdba59f-0618-4910-9b9c-8ff533b500a0\" name=\"Changes\" comment=\"first upload\">\n      <change afterPath=\"$PROJECT_DIR$/.terraform.lock.hcl\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/terraform.tfstate\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/main.tf\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/main.tf\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/outputs.tf\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/outputs.tf\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/vars.tf\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/vars.tf\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 4\n}</component>\n  <component name=\"ProjectId\" id=\"2clFGkm1slaVkJUi8UbZdsclkIy\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"WebServerToolWindowFactoryState\": \"false\",\n    \"git-widget-placeholder\": \"master\",\n    \"last_opened_file_path\": \"/Users/davidcarmonamaroto/Projects/erni-backstage\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"ts.external.directory.path\": \"/Users/davidcarmonamaroto/Projects/erni-backstage/node_modules/typescript/lib\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n      <recent name=\"$PROJECT_DIR$/terraform\" />\n    </key>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"SwiftWorkspaceSettings\">\n    <option name=\"detectedToolchain\" value=\"true\" />\n    <option name=\"toolchainPathValue\" value=\"/Library/Developer/CommandLineTools\" />\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"afdba59f-0618-4910-9b9c-8ff533b500a0\" name=\"Changes\" comment=\"\" />\n      <created>1708678164684</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1708678164684</updated>\n      <workItem from=\"1708678166825\" duration=\"643000\" />\n      <workItem from=\"1708682587738\" duration=\"3452000\" />\n      <workItem from=\"1708686270807\" duration=\"11885000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"erfg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1708686483025</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1708686483025</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"erfg\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1708686597329</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1708686597330</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"first upload\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1708705057304</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1708705057304</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"4\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\n    <MESSAGE value=\"erfg\" />\n    <MESSAGE value=\"first upload\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"first upload\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8e2bc728f0009adabbc204d9714acee6229937f6)
++++ b/.idea/workspace.xml	(date 1708933585174)
+@@ -4,9 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="afdba59f-0618-4910-9b9c-8ff533b500a0" name="Changes" comment="first upload">
++    <list default="true" id="afdba59f-0618-4910-9b9c-8ff533b500a0" name="Changes" comment="first upload 3">
+       <change afterPath="$PROJECT_DIR$/.terraform.lock.hcl" afterDir="false" />
+       <change afterPath="$PROJECT_DIR$/terraform.tfstate" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/main.tf" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/outputs.tf" beforeDir="false" afterPath="$PROJECT_DIR$/outputs.tf" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/vars.tf" beforeDir="false" afterPath="$PROJECT_DIR$/vars.tf" afterDir="false" />
+@@ -73,7 +74,7 @@
+       <updated>1708678164684</updated>
+       <workItem from="1708678166825" duration="643000" />
+       <workItem from="1708682587738" duration="3452000" />
+-      <workItem from="1708686270807" duration="11885000" />
++      <workItem from="1708686270807" duration="12517000" />
+     </task>
+     <task id="LOCAL-00001" summary="erfg">
+       <option name="closed" value="true" />
+@@ -99,7 +100,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1708705057304</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00004" summary="first upload 2">
++      <option name="closed" value="true" />
++      <created>1708705293637</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1708705293637</updated>
++    </task>
++    <task id="LOCAL-00005" summary="first upload 3">
++      <option name="closed" value="true" />
++      <created>1708705368328</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1708705368328</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -120,6 +137,8 @@
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+     <MESSAGE value="erfg" />
+     <MESSAGE value="first upload" />
+-    <option name="LAST_COMMIT_MESSAGE" value="first upload" />
++    <MESSAGE value="first upload 2" />
++    <MESSAGE value="first upload 3" />
++    <option name="LAST_COMMIT_MESSAGE" value="first upload 3" />
+   </component>
+ </project>
+\ No newline at end of file
