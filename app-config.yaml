@@ -25,9 +25,9 @@ integrations:
   github:
     - host: github.com
       apps:
-        - appId: ${{ secrets.GITHUB_APP_ID }}
-          clientId: ${{ secrets.GITHUB_APP_CLIENT_ID }}
-          clientSecret: ${{ secrets.GITHUB_APP_CLIENT_SECRET }}
+        - appId: 828233
+          clientId: Iv1.070a80f1762cab18
+          clientSecret: Ffb6c39a026e53dba549affdb09170aa2ab89809
 auth:
   environment: production
   providers:
