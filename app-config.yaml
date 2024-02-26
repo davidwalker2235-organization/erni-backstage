@@ -9,6 +9,13 @@ backend:
   baseUrl: https://${CUSTOM_DOMAIN}
   listen:
     port: 80
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
   cors:
     origin: https://${CUSTOM_DOMAIN}
 
@@ -21,8 +28,7 @@ integrations:
           clientId: ${GITHUB_BACKSTAGE_CLIENTID}
           clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
           webhookSecret: ${GITHUB_BACKSTAGE_WEBHOOKSECRET}
-          privateKey: |
-            ${GITHUB_BACKSTAGE_PRIVATEKEY}
+          privateKey: ${GITHUB_BACKSTAGE_PRIVATEKEY}
 auth:
   environment: production
   providers:
