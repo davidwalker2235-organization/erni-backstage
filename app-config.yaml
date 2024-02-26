@@ -1,44 +1,42 @@
 app:
   # Should be the same as backend.baseUrl when using the `app-backend` plugin
-  baseUrl: http://localhost:3000
+  baseUrl: https://${CUSTOM_DOMAIN}
+
+organization:
+  name: davidwalker2235-organization
 
 backend:
-  baseUrl: http://localhost:7007
+  baseUrl: https://${CUSTOM_DOMAIN}
   listen:
     port: 80
   cors:
-    origin: http://localhost:3000
-    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
-    credentials: true
-  database:
-    client: pg
-    connection:
-      host: ernibackstagepsql.postgres.database.azure.com
-      port: 5432
-      user: backstage@prodernibackstagepsql
-      password: "Dacarma@9211"
-      ssl: true
-  cache:
-    store: memory
+    origin: https://${CUSTOM_DOMAIN}
 
 integrations:
   github:
     - host: github.com
-      token: ${{ secrets.TOKEN }}
+      apps:
+        - appId: ${GITHUB_BACKSTAGE_APPID}
+          webhookUrl: ${GITHUB_BACKSTAGE_WEBHOOKURL}
+          clientId: ${GITHUB_BACKSTAGE_CLIENTID}
+          clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
+          webhookSecret: ${GITHUB_BACKSTAGE_WEBHOOKSECRET}
+          privateKey: |
+            ${GITHUB_BACKSTAGE_PRIVATEKEY}
 auth:
   environment: production
   providers:
     microsoft:
       production:
-        clientId: ${{ secrets.AZURE_CLIENT_ID }}
-        clientSecret: ${{ secrets.AZURE_CLIENT_SECRET }}
-        tenantId: ${{ secrets.AZURE_TENANT_ID }}
+        clientId: ${AZURE_CLIENT_ID}
+        clientSecret: ${AZURE_CLIENT_SECRET}
+        tenantId: ${AZURE_TENANT_ID}
 
 techdocs:
   builder: 'external'
   publisher:
     type: 'azureBlobStorage'
     azureBlobStorage:
-      containerName: ${{ secrets.TECHDOCS_CONTAINER_NAME }}
+      containerName: ${TECHDOCS_CONTAINER_NAME}
       credentials:
-        accountName: ${{ secrets.TECHDOCS_STORAGE_ACCOUNT }}
+        accountName: ${TECHDOCS_STORAGE_ACCOUNT}
