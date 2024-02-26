@@ -15,7 +15,7 @@ backend:
     connection:
       host: ernibackstagepsql.postgres.database.azure.com
       port: 5432
-      user: postgres@prodernibackstagepsql
+      user: backstage@prodernibackstagepsql
       password: "Dacarma@9211"
       ssl: true
   cache:
