@@ -25,13 +25,12 @@ integrations:
   github:
     - host: github.com
       apps:
-        - appId: ${GITHUB_BACKSTAGE_APPID}
-          webhookUrl: ${GITHUB_BACKSTAGE_WEBHOOKURL}
-          clientId: ${GITHUB_BACKSTAGE_CLIENTID}
-          clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
-          webhookSecret: ${GITHUB_BACKSTAGE_WEBHOOKSECRET}
-          privateKey: |
-            ${GITHUB_BACKSTAGE_PRIVATEKEY}
+        - appId: 828233
+          clientId: Iv1.070a80f1762cab18
+          clientSecret: Ffb6c39a026e53dba549affdb09170aa2ab89809
+          webhookUrl: https://0d070862-c442-44f9-8ea9-73eaa403522a.webhook.we.azure-automation.net/webhooks?token=CSORBUWS7ljxtYTBQV6rTlfBOMkDtGSMKnfJODUzyZ4%3d
+          webhookSecret: Dacarma@9211
+          privateKey: SHA256:ArDIfCq4EDbIpWHAsKp065K7lnzUzAxsJxT/d4ru0gw=
 auth:
   environment: production
   providers:
