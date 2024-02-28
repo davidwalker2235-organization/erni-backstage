@@ -8,3 +8,6 @@ To start the app, run:
 yarn install
 yarn dev
 ```
+# Steps for create a backstage app and deploy on Azure
+
+* Crear un servicio
