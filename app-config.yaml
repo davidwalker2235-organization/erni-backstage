@@ -38,6 +38,10 @@ auth:
         clientId: ${AZURE_CLIENT_ID}
         clientSecret: ${AZURE_CLIENT_SECRET}
         tenantId: ${AZURE_TENANT_ID}
+    github:
+      development:
+        clientId: ${GITHUB_BACKSTAGE_CLIENTID}
+        clientSecret: ${GITHUB_BACKSTAGE_PRIVATEKEY}
 
 techdocs:
   builder: 'external'
