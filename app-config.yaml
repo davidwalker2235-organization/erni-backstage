@@ -39,7 +39,7 @@ auth:
         clientSecret: ${AZURE_CLIENT_SECRET}
         tenantId: ${AZURE_TENANT_ID}
     github:
-      development:
+      production:
         clientId: ${GITHUB_BACKSTAGE_CLIENTID}
         clientSecret: ${GITHUB_BACKSTAGE_PRIVATEKEY}
 
