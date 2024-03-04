@@ -42,6 +42,10 @@ auth:
         domainHint: ${AZURE_TENANT_ID}
         additionalScopes:
           - Mail.Send
+    github:
+      development:
+        clientId: ${GITHUB_BACKSTAGE_CLIENTID}
+        clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
 
 techdocs:
   builder: 'external'
