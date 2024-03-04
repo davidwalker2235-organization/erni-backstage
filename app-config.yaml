@@ -33,7 +33,6 @@ integrations:
 auth:
   environment: production
   providers:
-    azure-easyauth: {}
     microsoft:
       production:
         clientId: ${AZURE_CLIENT_ID}
