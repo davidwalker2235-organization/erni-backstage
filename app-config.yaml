@@ -1,6 +1,7 @@
 app:
   # Should be the same as backend.baseUrl when using the `app-backend` plugin
   baseUrl: https://${CUSTOM_DOMAIN}
+  title: "ERNI Backstage"
 
 organization:
   name: davidwalker2235-organization
