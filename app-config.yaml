@@ -43,7 +43,7 @@ auth:
         additionalScopes:
           - Mail.Send
     github:
-      development:
+      production:
         clientId: ${GITHUB_BACKSTAGE_CLIENTID}
         clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
 
