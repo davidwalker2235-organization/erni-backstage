@@ -33,16 +33,15 @@ integrations:
 auth:
   environment: production
   providers:
+    azure-easyauth: {}
     microsoft:
       production:
         clientId: ${AZURE_CLIENT_ID}
         clientSecret: ${AZURE_CLIENT_SECRET}
         tenantId: ${AZURE_TENANT_ID}
-    microsoftGraphOrg:
-      production:
-        clientId: ${AZURE_CLIENT_ID}
-        clientSecret: ${AZURE_CLIENT_SECRET}
-        tenantId: ${AZURE_TENANT_ID}
+        domainHint: ${AZURE_TENANT_ID}
+        additionalScopes:
+          - Mail.Send
 
 techdocs:
   builder: 'external'

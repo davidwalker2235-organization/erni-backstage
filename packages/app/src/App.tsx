@@ -27,30 +27,26 @@ import { entityPage } from './components/catalog/EntityPage';
 import { searchPage } from './components/search/SearchPage';
 import { Root } from './components/Root';
 
-import { AlertDisplay, OAuthRequestDialog } from '@backstage/core-components';
+import {AlertDisplay, OAuthRequestDialog} from '@backstage/core-components';
 import { createApp } from '@backstage/app-defaults';
 import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 
-import {microsoftAuthApiRef} from '@backstage/core-plugin-api';
 import { SignInPage } from '@backstage/core-components';
+import {providers} from "./components/signin/identityProvider";
 
 const app = createApp({
   apis,
   components: {
     SignInPage: props => (
-      <SignInPage
-        {...props}
-        auto
-        provider={{
-            id: 'microsoft-auth-provider',
-            title: 'Microsoft',
-            message: 'Sign in using Microsoft',
-            apiRef: microsoftAuthApiRef,
-        }}
-      />
+        <SignInPage
+            {...props}
+            providers={providers}
+            title="Select a sign-in method"
+            align="center"
+        />
     ),
   },
   bindRoutes({ bind }) {
