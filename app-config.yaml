@@ -32,6 +32,7 @@ integrations:
           webhookSecret: ${GITHUB_BACKSTAGE_WEBHOOKSECRET}
           privateKey: ${GITHUB_BACKSTAGE_PRIVATEKEY}
 auth:
+  allowGuestAccess: true
   environment: production
   providers:
     microsoft:
@@ -44,8 +45,8 @@ auth:
           - Mail.Send
     github:
       production:
-        clientId: ${GITHUB_OATH_CLIENT_ID}
-        clientSecret: ${GITHUB_OATH_CLIENT_SECRET}
+        clientId: ${GITHUB_BACKSTAGE_CLIENTID}
+        clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
 
 techdocs:
   builder: 'external'
