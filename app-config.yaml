@@ -24,13 +24,7 @@ backend:
 integrations:
   github:
     - host: github.com
-      apps:
-        - appId: ${GITHUB_BACKSTAGE_APPID}
-          webhookUrl: ${GITHUB_BACKSTAGE_WEBHOOKURL}
-          clientId: ${GITHUB_BACKSTAGE_CLIENTID}
-          clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
-          webhookSecret: ${GITHUB_BACKSTAGE_WEBHOOKSECRET}
-          privateKey: ${GITHUB_BACKSTAGE_PRIVATEKEY}
+      token: ${GITHUB_TOKEN}
 auth:
   allowGuestAccess: true
   environment: production
@@ -47,6 +41,8 @@ auth:
       production:
         clientId: ${GITHUB_BACKSTAGE_CLIENTID}
         clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
+
+scaffolder:
 
 techdocs:
   builder: 'external'
