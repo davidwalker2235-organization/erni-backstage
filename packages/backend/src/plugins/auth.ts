@@ -28,7 +28,6 @@ export default async function createPlugin(
               },
             });
           },
-          // resolver: providers.github.resolvers.usernameMatchingUserEntityName(),
         },
       }),
       // @ts-ignore

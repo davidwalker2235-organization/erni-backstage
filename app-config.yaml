@@ -44,8 +44,8 @@ auth:
           - Mail.Send
     github:
       production:
-        clientId: ${GITHUB_BACKSTAGE_CLIENTID}
-        clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
+        clientId: ${GITHUB_OATH_CLIENT_ID}
+        clientSecret: ${GITHUB_OATH_CLIENT_SECRET}
 
 techdocs:
   builder: 'external'
