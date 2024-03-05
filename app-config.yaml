@@ -42,8 +42,6 @@ auth:
         clientId: ${GITHUB_BACKSTAGE_CLIENTID}
         clientSecret: ${GITHUB_BACKSTAGE_CLIENTSECRET}
 
-scaffolder:
-
 techdocs:
   builder: 'external'
   publisher:
