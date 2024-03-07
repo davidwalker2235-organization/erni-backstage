@@ -27,7 +27,7 @@ import { entityPage } from './components/catalog/EntityPage';
 import { searchPage } from './components/search/SearchPage';
 import { Root } from './components/Root';
 
-import {AlertDisplay, OAuthRequestDialog, ProxiedSignInPage} from '@backstage/core-components';
+import {AlertDisplay, OAuthRequestDialog} from '@backstage/core-components';
 import { createApp } from '@backstage/app-defaults';
 import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
@@ -35,26 +35,20 @@ import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 
 import { SignInPage } from '@backstage/core-components';
-import {configApiRef, useApi} from "@backstage/core-plugin-api";
+import {providers} from "./components/signin/identityProvider";
 
 const app = createApp({
   apis,
-    components: {
-        SignInPage: props => {
-            const configApi = useApi(configApiRef);
-            if (configApi.getString('auth.environment') !== 'development') {
-                return <ProxiedSignInPage {...props} provider="azure-easyauth" />;
-            }
-            return (
-                <SignInPage
-                    {...props}
-                    providers={['guest', 'custom']}
-                    title="Select a sign-in method"
-                    align="center"
-                />
-            );
-        },
-    },
+  components: {
+    SignInPage: props => (
+        <SignInPage
+            {...props}
+            providers={providers}
+            title="Select a sign-in method"
+            align="center"
+        />
+    ),
+  },
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
       createComponent: scaffolderPlugin.routes.root,
