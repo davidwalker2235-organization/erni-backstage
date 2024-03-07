@@ -39,49 +39,24 @@ export default async function createPlugin(
               },
             });
           },
-          // resolver: providers.github.resolvers.usernameMatchingUserEntityName(),
         },
       }),
-      // 'azure-easyauth': providers.easyAuth.create({
-      //   signIn: {
-      //     resolver: async (info, ctx) => {
-      //       const {
-      //         fullProfile: { id },
-      //       } = info.result;
-      //
-      //       if (!id) {
-      //         throw new Error('User profile contained no id');
-      //       }
-      //
-      //       return await ctx.signInWithCatalogUser({
-      //         annotations: {
-      //           'graph.microsoft.com/user-id': id,
-      //         },
-      //       });
-      //     },
-      //   },
-      // }),
-      microsoft: providers.microsoft.create({
+      'azure-easyauth': providers.easyAuth.create({
         signIn: {
-          resolver({profile}, ctx) {
-            if (!profile.email) {
-              throw new Error(
-                  'Login failed. User does not contain an email'
-              )
-            }
-            const [localPart] = profile.email.split('@')
-            const userEntityRef = stringifyEntityRef({
-              kind: 'User',
-              name: localPart,
-              namespace: DEFAULT_NAMESPACE
-            })
+          resolver: async (info, ctx) => {
+            const {
+              fullProfile: { id },
+            } = info.result;
 
-            return ctx.issueToken({
-              claims: {
-                sub: userEntityRef,
-                ent: [userEntityRef]
-              }
-            })
+            if (!id) {
+              throw new Error('User profile contained no id');
+            }
+
+            return await ctx.signInWithCatalogUser({
+              annotations: {
+                'graph.microsoft.com/user-id': id,
+              },
+            });
           },
         },
       }),
