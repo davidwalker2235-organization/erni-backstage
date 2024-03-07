@@ -1,4 +1,4 @@
-import {githubAuthApiRef, microsoftAuthApiRef} from "@backstage/core-plugin-api";
+import {githubAuthApiRef} from "@backstage/core-plugin-api";
 
 export const providers = [
     {
@@ -7,10 +7,10 @@ export const providers = [
         message: 'Sign in using Github',
         apiRef: githubAuthApiRef
     },
-    {
-        id: 'microsoft-auth-provider',
-        title: 'Azure Active Directory',
-        message: 'Sign in using Azure AD',
-        apiRef: microsoftAuthApiRef
-    }
+    // {
+    //     id: 'microsoft-auth-provider',
+    //     title: 'Azure Active Directory',
+    //     message: 'Sign in using Azure AD',
+    //     apiRef: microsoftAuthApiRef
+    // }
 ]
