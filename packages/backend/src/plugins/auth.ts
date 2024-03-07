@@ -5,7 +5,6 @@ import {
 } from '@backstage/plugin-auth-backend';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
-import {DEFAULT_NAMESPACE, stringifyEntityRef} from "@backstage/catalog-model";
 
 export default async function createPlugin(
     env: PluginEnvironment,
@@ -20,25 +19,7 @@ export default async function createPlugin(
       ...defaultAuthProviderFactories,
       github: providers.github.create({
         signIn: {
-          resolver({profile}, ctx) {
-            if (!profile.email) {
-              throw new Error(
-                  'Login failed. User does not contain an email'
-              )
-            }
-            const [localPart] = profile.email.split('@')
-            const userEntityRef = stringifyEntityRef({
-              kind: 'User',
-              name: localPart,
-              namespace: DEFAULT_NAMESPACE
-            })
-            return ctx.issueToken({
-              claims: {
-                sub: userEntityRef,
-                ent: [userEntityRef]
-              },
-            });
-          },
+          resolver: providers.github.resolvers.usernameMatchingUserEntityName()
         },
       }),
       'azure-easyauth': providers.easyAuth.create({

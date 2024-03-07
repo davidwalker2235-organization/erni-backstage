@@ -34,21 +34,8 @@ import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 
-import { SignInPage } from '@backstage/core-components';
-import {providers} from "./components/signin/identityProvider";
-
 const app = createApp({
   apis,
-  components: {
-    SignInPage: props => (
-        <SignInPage
-            {...props}
-            providers={providers}
-            title="Select a sign-in method"
-            align="center"
-        />
-    ),
-  },
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
       createComponent: scaffolderPlugin.routes.root,
