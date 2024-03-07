@@ -5,6 +5,7 @@ import {
 } from '@backstage/plugin-auth-backend';
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
+import {DEFAULT_NAMESPACE, stringifyEntityRef} from "@backstage/catalog-model";
 
 export default async function createPlugin(
     env: PluginEnvironment,
@@ -19,34 +20,68 @@ export default async function createPlugin(
       ...defaultAuthProviderFactories,
       github: providers.github.create({
         signIn: {
-          resolver(_, ctx) {
-            const userRef = 'user:default/guest'; // Must be a full entity reference
+          resolver({profile}, ctx) {
+            if (!profile.email) {
+              throw new Error(
+                  'Login failed. User does not contain an email'
+              )
+            }
+            const [localPart] = profile.email.split('@')
+            const userEntityRef = stringifyEntityRef({
+              kind: 'User',
+              name: localPart,
+              namespace: DEFAULT_NAMESPACE
+            })
             return ctx.issueToken({
               claims: {
-                sub: userRef, // The user's own identity
-                ent: [userRef], // A list of identities that the user claims ownership through
+                sub: userEntityRef,
+                ent: [userEntityRef]
               },
             });
           },
           // resolver: providers.github.resolvers.usernameMatchingUserEntityName(),
         },
       }),
-      'azure-easyauth': providers.easyAuth.create({
+      // 'azure-easyauth': providers.easyAuth.create({
+      //   signIn: {
+      //     resolver: async (info, ctx) => {
+      //       const {
+      //         fullProfile: { id },
+      //       } = info.result;
+      //
+      //       if (!id) {
+      //         throw new Error('User profile contained no id');
+      //       }
+      //
+      //       return await ctx.signInWithCatalogUser({
+      //         annotations: {
+      //           'graph.microsoft.com/user-id': id,
+      //         },
+      //       });
+      //     },
+      //   },
+      // }),
+      microsoft: providers.microsoft.create({
         signIn: {
-          resolver: async (info, ctx) => {
-            const {
-              fullProfile: { id },
-            } = info.result;
-
-            if (!id) {
-              throw new Error('User profile contained no id');
+          resolver({profile}, ctx) {
+            if (!profile.email) {
+              throw new Error(
+                  'Login failed. User does not contain an email'
+              )
             }
+            const [localPart] = profile.email.split('@')
+            const userEntityRef = stringifyEntityRef({
+              kind: 'User',
+              name: localPart,
+              namespace: DEFAULT_NAMESPACE
+            })
 
-            return await ctx.signInWithCatalogUser({
-              annotations: {
-                'graph.microsoft.com/user-id': id,
-              },
-            });
+            return ctx.issueToken({
+              claims: {
+                sub: userEntityRef,
+                ent: [userEntityRef]
+              }
+            })
           },
         },
       }),
